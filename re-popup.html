@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="popup.css">
+  <title>Qase Extension</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Create Test Run</h1>
+    <form id="testForm">
+      <h3>Title Sample: [TCP-9003] GPID 1044 Game ID 27 (AURORA WOLF)</h3>
+      <label for="requestId">Request ID:</label>
+      <input type="text" id="requestId" name="requestId" required>
+
+      <label for="gpid">GPID:</label>
+      <input type="text" id="gpid" name="gpid" required>
+
+      <label for="gameId">Game ID:</label>
+      <input type="text" id="gameId" name="gameId" required>
+
+      <label for="gameName">Game Name:</label>
+      <input type="text" id="gameName" name="gameName" required>
+
+      <label for="testPlan">Test Plan:</label>
+      <select id="testPlan" name="testPlan"></select>
+
+      <label for="environment">Environment:</label>
+      <select id="environment" name="environment">
+        <option value="3">UAT</option>
+        <option value="1">Production</option>
+      </select>
+
+      <button type="submit" id="submitButton">Submit</button>
+    </form>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
+

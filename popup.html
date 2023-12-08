@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="add-form-container">
+
+        <form class="add-form">
+            <h2>Creat Test Run</h2>
+            <div class="input-group">
+                <label for="token">Author</label>
+                <select name="" id="token">
+                    <option value="" disabled selected hidden>Select author</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="title" style="color: green; font-weight: bold;">Test case title:</label>
+                <input type="text" id="title" name="title" required placeholder="JiraID/ GPID/ GameID/ GameName">
+            </div>
+            <div class="input-group">
+                <label for="testPlan">Test Plan:</label>
+                <select id="selectPlan" name="testPlan" required>
+                    <option value="" disabled selected hidden>Select plan</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="env">Environment:</label>
+                <select id="env" name="env" required>
+                    <option value="3">UAT</option>
+                    <option value="1">Production</option>
+                </select>
+            </div>
+        </form>
+        <button id="CreateTestRun">Create</button>
+        <!-- Message  -->
+        <div class="notification" id="notification" style="display: none;">
+
+        </div>
+    </div>
+    <script src="popup.js"></script>
+
+</body>
+
+</html>
