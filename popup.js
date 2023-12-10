@@ -25,7 +25,9 @@ const getToken = async () => {
     requestData.style.display = 'none';
 
 }
+
 getToken()
+
 
 // Get plan
 const getTestPlan = () => {
@@ -150,12 +152,6 @@ function showNotification(message, msbackgrond) {
         notification.style.display = 'none';
     }, 3000);
 }
-
-requestData.addEventListener('click', async () => {
-    requestData.textContent = 'Loading...';
-    await getToken()
-    requestData.textContent = 'Get Data';
-})
 
 // Format title 
 function convertString(inputString) {
