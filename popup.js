@@ -3,6 +3,11 @@ const URL = "https://qaseapi.onrender.com";
 
 // Get token
 const tokenElement = document.getElementById("token");
+const button = document.getElementById('CreateTestRun')
+const testPlan = document.getElementById('selectPlan');
+const envID = document.getElementById('env');
+const title = document.getElementById('title');
+
 const requestData = document.getElementById('requestData');
 
 const getToken = async () => {
@@ -81,11 +86,6 @@ getEnvironments();
 
 
 // Create Test run
-const button = document.getElementById('CreateTestRun')
-const testPlan = document.getElementById('selectPlan');
-const envID = document.getElementById('env');
-let Title = document.getElementById('title');
-
 const createNewTestRun = async () => {
     button.disabled = true
     button.style.backgroundColor = 'gray';
@@ -133,7 +133,7 @@ const createNewTestRun = async () => {
 button.addEventListener('click', createNewTestRun)
 
 
-Title.addEventListener("keypress", function (event) {
+title.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
         button.click();
