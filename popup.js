@@ -99,7 +99,7 @@ const createNewTestRun = async () => {
 
     try {
 
-        if (data.title && data.token && data.plan_id !== '') {
+        if (data.title && data.plan_id !== '') {
 
             const response = await fetch(`${URL}/add`, {
                 method: 'POST',
@@ -115,18 +115,18 @@ const createNewTestRun = async () => {
             console.log(responseData);
             showNotification('Create test run successfully', 'green')
             button.disabled = false
-            button.style.backgroundColor = 'green';
+            button.style.backgroundColor = '#00d157';
 
         }
         else {
             showNotification('Please input correct format', 'red')
             button.disabled = false
-            button.style.backgroundColor = 'green';
+            button.style.backgroundColor = '#00d157';
         }
     } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
-        showNotification('Worng your authur', 'yellow')
-        button.style.backgroundColor = 'green';
+        showNotification("Create new test run failed", 'red')
+        button.style.backgroundColor = '#00d157';
     }
 
 }

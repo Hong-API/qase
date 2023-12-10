@@ -15,11 +15,9 @@ body {
     font-family: Arial, sans-serif;
     background-color: var(--white);
     display: flex;
-    border-radius: 5px;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    padding: 5px;
 
 }
 
@@ -76,7 +74,9 @@ body {
     border: 1px solid #ccc;
     width: 100%;
 }
-
+.hovered{
+    background: #00d157;
+}
 button {
     padding: 10px;
     border: none;
@@ -88,6 +88,10 @@ button {
 }
 
 button:hover {
+    background-color: var(--succcess);
+}
+
+option:hover {
     background-color: var(--succcess);
 }
 
