@@ -108,9 +108,7 @@ const createNewTestRun = async () => {
                 },
                 body: JSON.stringify(data)
             });
-            if (!response.ok) {
-                throw new Error('Network response was not ok.');
-            }
+
             const responseData = await response.json();
             console.log(responseData);
             showNotification('Create test run successfully', 'green')
@@ -124,8 +122,8 @@ const createNewTestRun = async () => {
             button.style.backgroundColor = '#00d157';
         }
     } catch (error) {
-        console.error('There was a problem with the fetch operation:', error);
         showNotification("Create new test run failed", 'red')
+        button.disabled = false
         button.style.backgroundColor = '#00d157';
     }
 
