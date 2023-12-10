@@ -1,22 +1,29 @@
 
-const URL = "https://qaseapiextension.onrender.com";
-
-const token = {
-    senghong: "67fb1f9b0dd6a3e292e1fa4c9752d1af3f1ea0a787ca95f698f5b8883af5d40d",
-    vannak: "67fb1f9b0dd6a3e292e1fa4c9752d1af3f1ea0a787ca95f698f5b8883af5d40d",
-    sopha: "38c77aaeb9d5e0dfcaf99627a74e70949b3e668ad2fed73a1845bd6ac7ae7f22"
-}
+const URL = "https://qaseapi.onrender.com";
 
 // Get token
 const tokenElement = document.getElementById("token");
-const getToken = () => {
-    for (let key in token) {
-        const option = document.createElement("option");
-        option.value = token[key];
-        option.textContent = key;
-        tokenElement.appendChild(option);
-        // console.log(token[key])
-    }
+const requestData = document.getElementById('requestData');
+
+const getToken = async () => {
+    requestData.style.display = 'block';
+    await fetch(`${URL}/author`,).then(response => response.json())
+        .then(data => {
+            const mydata = data.data
+            for (item in mydata) {
+                const option = document.createElement('option');
+                option.value = mydata[item];
+                option.textContent = item
+                tokenElement.appendChild(option)
+            }
+
+        })
+        .catch(error => {
+            // Handle errors
+            console.error('Error fetching data:', error);
+        });
+    requestData.style.display = 'none';
+
 }
 getToken()
 
@@ -46,9 +53,32 @@ const getTestPlan = () => {
 }
 getTestPlan();
 
+// Get Environments
+
+const getEnvironments = async () => {
+    await fetch(`${URL}/env`,).then(response => response.json())
+        .then(data => {
+            const mydata = data.data.result
+            console.log(mydata);
+
+            mydata.entities.forEach(element => {
+                const option = document.createElement('option');
+                option.value = element.id;
+                option.textContent = element.title;
+                document.getElementById('env').appendChild(option);
+            });
+        })
+        .catch(error => {
+            // Handle errors
+            console.error('Error fetching data:', error);
+        });
+}
+
+getEnvironments();
 
 
-// Test Run 
+
+// Create Test run
 const button = document.getElementById('CreateTestRun')
 const testPlan = document.getElementById('selectPlan');
 const envID = document.getElementById('env');
@@ -121,6 +151,11 @@ function showNotification(message, msbackgrond) {
     }, 3000);
 }
 
+requestData.addEventListener('click', async () => {
+    requestData.textContent = 'Loading...';
+    await getToken()
+    requestData.textContent = 'Get Data';
+})
 
 // Format title 
 function convertString(inputString) {
