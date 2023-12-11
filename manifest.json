@@ -4,7 +4,7 @@
   "description": "Base Level Extension",
   "version": "1.0",
   "host_permissions": [
-    "https://qaseapi.onrender.com/"
+    "https://qqknevh7guimnafkkwce5ajl6a0rrjxb.lambda-url.us-east-1.on.aws/"
   ],
   "permissions": [
     "storage"

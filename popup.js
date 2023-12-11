@@ -1,5 +1,5 @@
 
-const URL = "https://qaseapi.onrender.com";
+const URL = "https://qqknevh7guimnafkkwce5ajl6a0rrjxb.lambda-url.us-east-1.on.aws";
 
 // Get token
 const tokenElement = document.getElementById("token");
@@ -30,6 +30,12 @@ const getToken = async () => {
     requestData.style.display = 'none';
 
 }
+// requestData.addEventListener('click', async (event) => {
+//     event.preventDefault();
+//     requestData.textContent = 'Getting..';
+//     getToken()
+
+// })
 
 getToken()
 
