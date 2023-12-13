@@ -18,7 +18,6 @@ function convertToFormat(input) {
 const input = document.getElementById('converter')
 const datastore = document.getElementById('data')
 document.getElementById('button').addEventListener('click', () => {
-    // convertToFormat(input)
     datastore.textContent = convertToFormat(input.value)
     console.log(convertToFormat(input.value))
 })

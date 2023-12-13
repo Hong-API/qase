@@ -7,7 +7,7 @@
 
 :root {
     --succcess: #016f2f;
-    --sky:#05c377;
+    --sky: #05c377;
     --warning: #ff001e;
     --white: #fff;
 }
@@ -36,7 +36,6 @@ body {
 
 h2 {
     text-align: center;
-    margin-bottom: 25px;
     border-bottom: solid 2px var(--succcess);
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;

@@ -119,7 +119,7 @@ const createNewTestRun = async () => {
         button.style.backgroundColor = 'green';
         button.textContent = 'Create'
     } catch (error) {
-        console.error(error.message)
+        showNotification('Create failed', 'red');
         button.disabled = false
         button.style.backgroundColor = 'green';
         button.textContent = 'Create'
