@@ -6,8 +6,8 @@ const tokenElement = document.getElementById("token");
 const button = document.getElementById('CreateTestRun')
 const testPlan = document.getElementById('selectPlan');
 const envID = document.getElementById('env');
-const title = document.getElementById('title');
-
+const firstTitle = document.getElementById('first_title');
+const lastTitle = document.getElementById('last_title');
 const requestData = document.getElementById('requestData');
 
 const getToken = async () => {
@@ -30,12 +30,6 @@ const getToken = async () => {
     requestData.style.display = 'none';
 
 }
-// requestData.addEventListener('click', async (event) => {
-//     event.preventDefault();
-//     requestData.textContent = 'Getting..';
-//     getToken()
-
-// })
 
 getToken()
 
@@ -89,62 +83,88 @@ const getEnvironments = async () => {
 
 getEnvironments();
 
+// Generate title 
+function generateTitle(Title1, Title2, plan, env, author) {
+    const dataArray = Title2.split('--');
+    const result = dataArray.map((item) => {
+        const [gameId, name] = item.split('/');
+        const [JiraID, GPID] = Title1.split('/')
+        return { title: `[${JiraID}] GPID ${GPID} GameID ${gameId.trim()} (${name})`, plan_id: plan, environment_id: env, token: author };
+    });
+    return result;
+}
 
 
 // Create Test run
 const createNewTestRun = async () => {
     button.disabled = true
     button.style.backgroundColor = 'gray';
-    const data = {
-        title: convertString(title.value),
-        plan_id: testPlan.value,
-        environment_id: envID.value,
-        token: tokenElement.value
-    };
-    console.log(data)
-
+    button.textContent = 'sending'
+    const Title1 = firstTitle.value
+    const Title2 = lastTitle.value
+    const plan = testPlan.value
+    const env = envID.value
+    const author = tokenElement.value
+    const data = generateTitle(Title1, Title2, plan, env, author)
     try {
-
-        if (data.title && data.plan_id !== '') {
-
-            const response = await fetch(`${URL}/add`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            });
-
-            const responseData = await response.json();
-            console.log(responseData);
-            showNotification('Create test run successfully', 'green')
-            button.disabled = false
-            button.style.backgroundColor = '#00d157';
-
+        for (const item of data) {
+            await sendDataToAPI(item);
+            await delay(1000)
+            showNotification(`created ${item.title}`, 'blue');
+            await delay(1000)
+            console.log(item.title)
         }
-        else {
-            showNotification('Please input correct format', 'red')
-            button.disabled = false
-            button.style.backgroundColor = '#00d157';
-        }
-    } catch (error) {
-        showNotification("Create new test run failed", 'red')
+        showNotification('All data has been created', 'green');
         button.disabled = false
-        button.style.backgroundColor = '#00d157';
+        button.style.backgroundColor = 'green';
+        button.textContent = 'Create'
+    } catch (error) {
+        console.error(error.message)
+        button.disabled = false
+        button.style.backgroundColor = 'green';
+        button.textContent = 'Create'
+
+
     }
+
 
 }
 
+async function sendDataToAPI(data) {
+    try {
+        const response = await fetch(`${URL}/add`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+
+        });
+        if (!response.ok) {
+            throw new Error('Failed to send data');
+        }
+
+        const responseData = await response.json();
+        console.log('Data sent:', responseData);
+    } catch (error) {
+        console.error('Error sending data:', error.message);
+        throw error;
+    }
+}
 
 button.addEventListener('click', createNewTestRun)
 
 
-title.addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        button.click();
-    }
-});
+// lastTitle.addEventListener("keypress", function (event) {
+//     if (event.key === "Enter") {
+//         event.preventDefault();
+//         button.click();
+//     }
+// });
+function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 
 function showNotification(message, msbackgrond) {
     const notification = document.getElementById('notification');
@@ -154,7 +174,7 @@ function showNotification(message, msbackgrond) {
 
     setTimeout(() => {
         notification.style.display = 'none';
-    }, 3000);
+    }, 1000);
 }
 
 // Format title 

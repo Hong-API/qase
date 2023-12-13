@@ -12,6 +12,11 @@
     <div class="add-form-container">
         <div class="add-form">
             <h2>Create Test Run</h2>
+
+            <div>
+                <a href="convert.html" style="color: white;"><button>Convert</button></a>
+            </div>
+
             <div class="input-group">
                 <div style="display: flex; justify-content: space-between; align-items: end;">
                     <label for="token">Author</label>
@@ -24,8 +29,13 @@
                 </select>
             </div>
             <div class="input-group">
-                <label for="title" style="color: green; font-weight: bold;">Test case title:</label>
-                <input type="text" id="title" name="title" required placeholder="JiraID/ GPID/ GameID/ GameName">
+                <label for="title" style="color: green; font-weight: bold;">First Title</label>
+                <input type="text" id="first_title" name="first_title" required placeholder="JiraID/GPID">
+            </div>
+            <div class="input-group">
+                <label for="title" style="color: green; font-weight: bold;">Last Title</label>
+                <input type="text" id="last_title" name="last_title" required
+                    placeholder="GameID1/Name -- GameID2/Name -- ...">
             </div>
             <div class="input-group">
                 <label for="testPlan">Test Plan:</label>

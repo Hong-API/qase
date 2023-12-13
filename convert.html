@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        justify-content: start;
+        padding: 5px;
+        min-width: 350px;
+        max-width: 100vh;
+        background-color: white;
+    }
+</style>
+
+<body>
+
+    <div class="container">
+        <div
+            style="margin: 5px 0; display: flex; justify-content:space-between; justify-items: center; align-items: center;">
+            <a href="popup.html"><button>Back</button></a>
+            <h2>Convert Last Title</h2>
+        </div>
+        <textarea name="converter" id="converter" cols="30" rows="10"></textarea>
+        <div style="margin: 5px 0; display: flex; justify-content: start;">
+            <button id="button">Convert</button>
+        </div>
+        <textarea id="data" name="" id="" cols="30" rows="10" disabled></textarea>
+    </div>
+    <script src="convert.js"></script>
+</body>
+
+</html>
