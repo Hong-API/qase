@@ -84,7 +84,7 @@ const getEnvironments = async () => {
 getEnvironments();
 
 // Generate title 
-function generateTitle(Title1, Title2, plan, env, author) {
+function generateData(Title1, Title2, plan, env, author) {
     const dataArray = Title2.split('--');
     const result = dataArray.map((item) => {
         const [gameId, name] = item.split('/');
@@ -105,7 +105,7 @@ const createNewTestRun = async () => {
     const plan = testPlan.value
     const env = envID.value
     const author = tokenElement.value
-    const data = generateTitle(Title1, Title2, plan, env, author)
+    const data = generateData(Title1, Title2, plan, env, author)
     try {
         for (const item of data) {
             await sendDataToAPI(item);
