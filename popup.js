@@ -119,7 +119,7 @@ const createNewTestRun = async () => {
     const env = envID.value
     const author = tokenElement.value
     const data = generateData(Title2, plan, env, author)
-    const checkEmpty = jiraID.value && gameID.value && Title2.value && author.value && plan.value
+    const checkEmpty = jiraID.value && gameID.value && Title2 && author && plan
     try {
         if (checkEmpty !== '') {
             for (const item of data) {
