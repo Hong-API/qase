@@ -54,7 +54,7 @@ h2 {
 
 .input-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 
@@ -69,14 +69,10 @@ h2 {
 .input-group input,
 .input-group select,
 .input-group textarea {
-    padding: 8px;
+    padding: 5px;
     border-radius: 4px;
     border: 1px solid #ccc;
     width: 100%;
-}
-
-.hovered {
-    background: #00d157;
 }
 
 button {

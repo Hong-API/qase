@@ -48,8 +48,8 @@ const getTestPlan = () => {
 
             mydata.entities.forEach(element => {
                 const option = document.createElement('option');
-                option.style.color = 'green';
-                option.style.fontWeight = 'bold';
+                option.style.fontWeight = '600';
+                option.style.fontSize = '14px';
                 option.value = element.id;
                 option.textContent = element.title;
                 document.getElementById('selectPlan').appendChild(option);
