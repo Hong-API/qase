@@ -22,3 +22,25 @@ document.getElementById('button').addEventListener('click', () => {
     console.log(convertToFormat(input.value))
 })
 
+
+function copyTextToClipboard() {
+    const copyElement = document.getElementById("data");
+    copyElement.select();
+    navigator.clipboard.writeText(copyElement.value);
+    showNotification('copied', 'gray')
+
+}
+
+function showNotification(message, msbackgrond) {
+    const notification = document.getElementById('notification');
+    notification.style.display = 'block';
+    notification.style.backgroundColor = msbackgrond
+    notification.textContent = message
+
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 1000);
+}
+
+
+document.getElementById('copyBtn').addEventListener('click', copyTextToClipboard)

@@ -30,16 +30,33 @@
             <a href="popup.html"><button>Back</button></a>
 
         </div>
-        <div style="display: flex; justify-content: center;">
-            <h3 style="margin-bottom: 5px; font-family: 'Times New Roman', Times, serif;">Generate game ID with game
-                name</h3>
+
+
+        <h3 style="margin-bottom: 5px; font-family: 'Times New Roman', Times, serif;">Generate game ID with game
+            name</h3>
+
+        <div style="display: flex; justify-items: start;">
+            <div style=" margin-right: 5px;">
+                <span>Example Input:</span>
+            </div>
+            <div>
+                <div style="color: gray; font-weight: bold;"> ID Name</div>
+                <div>201 LiveCasino game</div>
+                <div>203 LiveCasino game2</div>
+            </div>
+        </div><br>
+        <div class="input-group">
+            <textarea name="converter" id="converter" cols="30" rows="10"></textarea>
         </div>
-        <textarea name="converter" id="converter" cols="30" rows="10"></textarea>
-        <div style="margin: 5px 0; display: flex; justify-content: start;">
+        <div style="margin: 5px 0; display: flex; justify-content: space-between;">
             <button id="button">Convert</button>
+            <button id="copyBtn">Copy</button>
         </div>
-        <textarea id="data" name="" id="" cols="30" rows="10" disabled></textarea>
+        <div class="input-group">
+            <textarea id="data" name="" id="" cols="30" rows="10" disabled></textarea>
+        </div>
     </div>
+    <div id="notification" class="notification"></div>
     <script src="convert.js"></script>
 </body>
 

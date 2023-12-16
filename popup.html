@@ -40,14 +40,18 @@
             </div>
             <div class="input-group">
                 <label for="title" style="color: green; font-weight: bold;">Game ID and Name</label>
-                <input type="text" id="last_title" name="last_title" required
-                    placeholder="GameID1/Name -- GameID2/Name -- ...">
+                <!-- <input type="text" id="last_title" name="last_title" required
+                    placeholder="GameID1/Name -- GameID2/Name -- ..."> -->
+
+                <textarea name="last_title" id="last_title" cols="30" rows="5" required
+                    placeholder="GameID1/Name -- GameID2/Name -- ..."></textarea>
             </div>
             <div class="input-group">
                 <label for="testPlan">Test Plan:</label>
                 <select id="selectPlan" name="testPlan" required>
+
                     <option value="" disabled selected hidden>Select a plan</option>
-                   
+
                 </select>
             </div>
             <div class="input-group">
