@@ -108,6 +108,11 @@ option:hover {
     border-radius: 5px;
 }
 
+#displayENV::placeholder {
+    color: #000;
+    font-weight: 500;
+}
+
 @keyframes fromright {
     0% {
         transform: translateX(50%);

@@ -12,11 +12,13 @@
         display: flex;
         flex-direction: column;
         justify-items: center;
-        justify-content: start;
-        padding: 5px;
+        justify-content: center;
+        padding: 20px;
         min-width: 350px;
         max-width: 100vh;
         background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     }
 </style>
 
@@ -26,7 +28,11 @@
         <div
             style="margin: 5px 0; display: flex; justify-content:space-between; justify-items: center; align-items: center;">
             <a href="popup.html"><button>Back</button></a>
-            <h2>Convert Last Title</h2>
+
+        </div>
+        <div style="display: flex; justify-content: center;">
+            <h3 style="margin-bottom: 5px; font-family: 'Times New Roman', Times, serif;">Generate game ID with game
+                name</h3>
         </div>
         <textarea name="converter" id="converter" cols="30" rows="10"></textarea>
         <div style="margin: 5px 0; display: flex; justify-content: start;">

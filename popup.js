@@ -6,7 +6,9 @@ const tokenElement = document.getElementById("token");
 const button = document.getElementById('CreateTestRun')
 const testPlan = document.getElementById('selectPlan');
 const envID = document.getElementById('env');
-const firstTitle = document.getElementById('first_title');
+const displayEndElement = document.getElementById('displayENV');
+const jiraID = document.getElementById('jira_id');
+const gameID = document.getElementById('game_id');
 const lastTitle = document.getElementById('last_title');
 const requestData = document.getElementById('requestData');
 
@@ -20,12 +22,12 @@ const getToken = async () => {
                 option.value = mydata[item];
                 option.textContent = item
                 tokenElement.appendChild(option)
+
             }
 
         })
         .catch(error => {
-            // Handle errors
-            console.error('Error fetching data:', error);
+            throw error;
         });
     requestData.style.display = 'none';
 
@@ -52,6 +54,7 @@ const getTestPlan = () => {
                 option.textContent = element.title;
                 document.getElementById('selectPlan').appendChild(option);
             });
+
         })
         .catch(error => {
             // Handle errors
@@ -60,20 +63,32 @@ const getTestPlan = () => {
 }
 getTestPlan();
 
+testPlan.addEventListener('change', function () {
+    // Get the selected option
+    const selectedOption = this.options[this.selectedIndex];
+
+    if (`${selectedOption.textContent}`.toLowerCase().includes('[uat]')) {
+        displayEndElement.placeholder = 'Demo Site / UAT';
+        envID.value = 3
+    } else if (`${selectedOption.textContent}`.toLowerCase().includes('[prod]')) {
+        displayEndElement.placeholder = 'Production';
+        envID.value = 1
+
+    } else {
+        envID.placeholder = 'Please select environment'
+    }
+
+
+});
+
 // Get Environments
 
 const getEnvironments = async () => {
     await fetch(`${URL}/env`,).then(response => response.json())
         .then(data => {
             const mydata = data.data.result
-            console.log(mydata);
+            return mydata
 
-            mydata.entities.forEach(element => {
-                const option = document.createElement('option');
-                option.value = element.id;
-                option.textContent = element.title;
-                document.getElementById('env').appendChild(option);
-            });
         })
         .catch(error => {
             // Handle errors
@@ -84,12 +99,11 @@ const getEnvironments = async () => {
 getEnvironments();
 
 // Generate title 
-function generateData(Title1, Title2, plan, env, author) {
+function generateData(Title2, plan, env, author) {
     const dataArray = Title2.split('--');
     const result = dataArray.map((item) => {
         const [gameId, name] = item.split('/');
-        const [JiraID, GPID] = Title1.split('/')
-        return { title: `[${JiraID}] GPID ${GPID} GameID ${gameId.trim()} (${name})`, plan_id: plan, environment_id: env, token: author };
+        return { title: `[${jiraID.value}] GPID ${gameID.value} GameID ${gameId.trim()} (${name})`, plan_id: plan, environment_id: env, token: author };
     });
     return result;
 }
@@ -99,25 +113,32 @@ function generateData(Title1, Title2, plan, env, author) {
 const createNewTestRun = async () => {
     button.disabled = true
     button.style.backgroundColor = 'gray';
-    button.textContent = 'sending'
-    const Title1 = firstTitle.value
+    button.textContent = 'Sending...'
     const Title2 = lastTitle.value
     const plan = testPlan.value
     const env = envID.value
     const author = tokenElement.value
-    const data = generateData(Title1, Title2, plan, env, author)
+    const data = generateData(Title2, plan, env, author)
+    const checkEmpty = jiraID.value && gameID.value && Title2.value && author.value && plan.value
     try {
-        for (const item of data) {
-            await sendDataToAPI(item);
+        if (checkEmpty !== '') {
+            for (const item of data) {
+                await sendDataToAPI(item);
+                await delay(1000)
+                showNotification(`created ${item.title}`, 'blue');
+
+            }
             await delay(1000)
-            showNotification(`created ${item.title}`, 'blue');
-            await delay(1000)
-            console.log(item.title)
+            showNotification('All data has been created', 'green');
+            button.disabled = false
+            button.style.backgroundColor = 'green';
+            button.textContent = 'Create'
+        } else {
+            showNotification('Please input all fields', 'red')
+            button.style.backgroundColor = 'green';
+            button.textContent = 'Create'
+            button.disabled = false
         }
-        showNotification('All data has been created', 'green');
-        button.disabled = false
-        button.style.backgroundColor = 'green';
-        button.textContent = 'Create'
     } catch (error) {
         showNotification('Create failed', 'red');
         button.disabled = false
@@ -154,13 +175,6 @@ async function sendDataToAPI(data) {
 
 button.addEventListener('click', createNewTestRun)
 
-
-// lastTitle.addEventListener("keypress", function (event) {
-//     if (event.key === "Enter") {
-//         event.preventDefault();
-//         button.click();
-//     }
-// });
 function delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }

@@ -14,7 +14,7 @@
             <h2 style="margin-bottom: 20px;">Create Test Run</h2>
 
             <div style="display: flex; justify-content: end;">
-                <a href="convert.html" style="color: white;"><button>Convert Last Title</button></a>
+                <a href="convert.html" style="color: white;"><button>Generate game ID with game name</button></a>
             </div>
 
             <div class="input-group">
@@ -28,12 +28,18 @@
 
                 </select>
             </div>
-            <div class="input-group">
-                <label for="title" style="color: green; font-weight: bold;">First Title</label>
-                <input type="text" id="first_title" name="first_title" required placeholder="JiraID/GPID">
+            <div style="display: flex; justify-content: space-between;">
+                <div class="input-group">
+                    <label for="title" style="color: green; font-weight: bold;">Jira ID</label>
+                    <input type="text" id="jira_id" name="" required placeholder="Jira request id">
+                </div>
+                <div class="input-group" style="margin-left: 2px;">
+                    <label for="title" style="color: green; font-weight: bold;">GPID</label>
+                    <input type="text" id="game_id" name="" required placeholder="Game provider id">
+                </div>
             </div>
             <div class="input-group">
-                <label for="title" style="color: green; font-weight: bold;">Last Title</label>
+                <label for="title" style="color: green; font-weight: bold;">Game ID and Name</label>
                 <input type="text" id="last_title" name="last_title" required
                     placeholder="GameID1/Name -- GameID2/Name -- ...">
             </div>
@@ -41,14 +47,13 @@
                 <label for="testPlan">Test Plan:</label>
                 <select id="selectPlan" name="testPlan" required>
                     <option value="" disabled selected hidden>Select a plan</option>
+                   
                 </select>
             </div>
             <div class="input-group">
-                <label for="env">Environment:</label>
-                <select id="env" name="env" required>
-                    <option value="" disabled selected hidden>Select an environment</option>
-
-                </select>
+                <label for="env">Environment</label>
+                <input type="text" id="displayENV" disabled>
+                <input type="text" id="env" disabled hidden>
             </div>
         </div>
         <button id="CreateTestRun">Create</button>
