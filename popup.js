@@ -57,16 +57,13 @@ const getTestPlan = () => {
 
         })
         .catch(error => {
-            // Handle errors
             console.error('Error fetching data:', error);
         });
 }
 getTestPlan();
 
 testPlan.addEventListener('change', function () {
-    // Get the selected option
     const selectedOption = this.options[this.selectedIndex];
-
     if (`${selectedOption.textContent}`.toLowerCase().includes('[uat]')) {
         displayEndElement.placeholder = 'Demo Site / UAT';
         envID.value = 3
@@ -75,10 +72,8 @@ testPlan.addEventListener('change', function () {
         envID.value = 1
 
     } else {
-        envID.placeholder = 'Please select environment'
+        console.log('Not select uat or prod')
     }
-
-
 });
 
 // Get Environments
