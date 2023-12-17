@@ -5,6 +5,7 @@ const URL = "https://qqknevh7guimnafkkwce5ajl6a0rrjxb.lambda-url.us-east-1.on.aw
 const tokenElement = document.getElementById("token");
 const button = document.getElementById('CreateTestRun')
 const testPlan = document.getElementById('selectPlan');
+const searchInput = document.getElementById("searchInput");
 const envID = document.getElementById('env');
 const displayEndElement = document.getElementById('displayENV');
 const jiraID = document.getElementById('jira_id');
@@ -48,7 +49,7 @@ const getTestPlan = () => {
 
             mydata.entities.forEach(element => {
                 const option = document.createElement('option');
-                option.style.fontWeight = '600';
+                option.style.fontWeight = '520';
                 option.style.fontSize = '14px';
                 option.value = element.id;
                 option.textContent = element.title;
@@ -61,6 +62,19 @@ const getTestPlan = () => {
         });
 }
 getTestPlan();
+searchInput.addEventListener("input", function () {
+    const searchText = this.value.toLowerCase();
+    Array.from(testPlan.options).forEach(option => {
+        const optionText = option.text.toLowerCase();
+        const isMatch = optionText.includes(searchText);
+        if (isMatch) {
+            option.style.display = "block";
+        } else {
+            option.style.display = "none";
+        }
+    });
+});
+
 
 testPlan.addEventListener('change', function () {
     const selectedOption = this.options[this.selectedIndex];

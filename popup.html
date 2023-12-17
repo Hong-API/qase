@@ -45,9 +45,12 @@
             </div>
             <div class="input-group">
                 <label for="testPlan">Test Plan:</label>
-                <select id="selectPlan" class="scrollbar" name="testPlan" required>
-                    <option value="" disabled selected hidden>Select a plan</option>
-                </select>
+                <div style="display: flex;">
+                    <input type="text" style="width: 80px;" id="searchInput" placeholder="Search">
+                    <select id="selectPlan" class="scrollbar" name="testPlan" required>
+                        <option value="" disabled selected>Select a plan</option>
+                    </select>
+                </div>
             </div>
             <div class="input-group">
                 <label for="env">Environment</label>
